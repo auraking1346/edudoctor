@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8f6">
+  <meta name="description" content="Friendly, reliable computer repair for laptops and desktops. Get a clear diagnosis and a repair that lasts.">
+  <title>edudocter — Computer repair, made simple</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17231f;
+      --muted: #64716c;
+      --green: #27765b;
+      --green-dark: #1d5d47;
+      --mint: #e8f2ed;
+      --paper: #f7f8f6;
+      --line: #e3e8e4;
+      --white: #fff;
+      --radius: 22px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+
+    .topbar { height: 78px; display: flex; align-items: center; border-bottom: 1px solid rgba(23, 35, 31, .07); }
+    .nav { display: flex; justify-content: space-between; align-items: center; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 750; letter-spacing: -.6px; }
+    .brand-mark { width: 35px; height: 35px; display: grid; place-items: center; color: white; background: var(--green); border-radius: 11px; }
+    .brand-mark svg { width: 21px; height: 21px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; color: #53615b; font-size: 14px; font-weight: 550; }
+    .nav-links a:hover, .footer a:hover { color: var(--green); }
+    .button { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 19px; border: 0; border-radius: 999px; background: var(--green); color: white; font-size: 14px; font-weight: 650; transition: background .2s, transform .2s; cursor: pointer; }
+    .button:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .button svg { width: 16px; height: 16px; }
+    .button-light { color: var(--ink); background: white; border: 1px solid var(--line); }
+    .button-light:hover { color: white; }
+
+    .hero { display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: 64px; padding-block: 74px 82px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-size: 12px; font-weight: 750; letter-spacing: 1.4px; text-transform: uppercase; }
+    .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: #64aa85; box-shadow: 0 0 0 4px #e1eee6; }
+    h1 { max-width: 580px; margin: 18px 0 17px; font-size: clamp(42px, 5vw, 64px); line-height: 1.06; letter-spacing: -3.2px; }
+    h1 span { color: var(--green); }
+    .hero-copy { max-width: 490px; margin: 0; color: var(--muted); font-size: 17px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 29px; }
+    .trust-row { display: flex; align-items: center; gap: 14px; margin-top: 34px; color: var(--muted); font-size: 13px; }
+    .avatars { display: flex; padding-left: 4px; }
+    .avatar { width: 30px; height: 30px; margin-left: -5px; display: grid; place-items: center; border: 2px solid var(--paper); border-radius: 50%; color: #315746; background: #dcebe1; font-size: 10px; font-weight: 750; }
+    .avatar:nth-child(2) { color: #76543d; background: #f1e2d4; }
+    .avatar:nth-child(3) { color: #435b80; background: #dce5f1; }
+    .stars { color: #d79b3c; letter-spacing: 2px; font-size: 13px; }
+    .trust-copy strong { color: var(--ink); }
+
+    .hero-art { overflow: hidden; border-radius: 32px; }
+    .hero-photo { display: block; width: 100%; height: auto; border-radius: inherit; }
+
+    .benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 26px 30px; border: 1px solid var(--line); border-radius: var(--radius); background: white; }
+    .benefit { display: flex; align-items: center; gap: 14px; }
+    .icon-box { width: 44px; height: 44px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 13px; color: var(--green); background: var(--mint); }
+    .icon-box svg { width: 21px; height: 21px; }
+    .benefit strong { display: block; font-size: 14px; }
+    .benefit span { color: var(--muted); font-size: 12px; }
+
+    section.content-section { padding-block: 92px; }
+    .section-heading { max-width: 610px; margin-bottom: 35px; }
+    .section-heading h2 { margin: 12px 0 9px; font-size: clamp(30px, 4vw, 42px); line-height: 1.15; letter-spacing: -1.7px; }
+    .section-heading p { margin: 0; color: var(--muted); }
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .service-card { min-height: 220px; padding: 25px; border: 1px solid var(--line); border-radius: 18px; background: white; transition: transform .2s, box-shadow .2s; }
+    .service-card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(28, 54, 41, .07); }
+    .service-card h3 { margin: 18px 0 7px; font-size: 17px; }
+    .service-card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .process { background: #edf3ef; }
+    .process .wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: start; }
+    .process .section-heading { margin: 0; }
+    .steps { display: grid; gap: 22px; }
+    .step { display: grid; grid-template-columns: 42px 1fr; gap: 15px; }
+    .step-number { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid #cadbd0; border-radius: 50%; color: var(--green); background: white; font-size: 13px; font-weight: 750; }
+    .step h3 { margin: 1px 0 4px; font-size: 16px; }
+    .step p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .contact-card { display: grid; grid-template-columns: 1fr .85fr; gap: 54px; align-items: center; padding: 40px; border-radius: 26px; color: white; background: #1e4939; }
+    .contact-card .eyebrow { color: #a7d7bb; }
+    .contact-card h2 { max-width: 470px; margin: 12px 0; font-size: clamp(30px, 4vw, 42px); line-height: 1.13; letter-spacing: -1.5px; }
+    .contact-card p { max-width: 470px; margin: 0; color: #d0dfd6; }
+    .contact-card .button { margin-top: 22px; color: var(--ink); background: white; }
+    .contact-card .button:hover { background: #e8f2ed; }
+    .contact-details { display: grid; gap: 13px; padding: 22px; border: 1px solid rgba(255,255,255,.14); border-radius: 18px; background: rgba(255,255,255,.06); }
+    .detail { display: flex; align-items: flex-start; gap: 12px; }
+    .detail svg { width: 19px; height: 19px; flex: 0 0 auto; margin-top: 2px; color: #a7d7bb; }
+    .detail strong { display: block; font-size: 13px; }
+    .detail span, .detail a { color: #d0dfd6; font-size: 13px; }
+    .detail a:hover { color: white; text-decoration: underline; }
+    .qr-contact { display: flex; align-items: center; gap: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14); }
+    .qr-contact img { width: 92px; height: 92px; padding: 6px; border-radius: 9px; background: white; }
+    .qr-contact strong { display: block; font-size: 13px; }
+    .qr-contact span { color: #d0dfd6; font-size: 12px; }
+    .placeholder-note { margin-top: 3px; color: #aec4b7; font-size: 11px; }
+
+    .footer { padding-block: 28px; color: var(--muted); font-size: 12px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+    .footer .brand { color: var(--ink); font-size: 15px; }
+    .footer .brand-mark { width: 29px; height: 29px; border-radius: 9px; }
+    .footer .brand-mark svg { width: 17px; height: 17px; }
+    .footer-links { display: flex; gap: 20px; }
+
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; gap: 38px; padding-block: 58px 54px; }
+      .benefits { grid-template-columns: 1fr; gap: 17px; }
+      .services { grid-template-columns: repeat(2, 1fr); }
+      .process .wrap { grid-template-columns: 1fr; gap: 36px; }
+      .contact-card { grid-template-columns: 1fr; gap: 30px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 32px, 1120px); }
+      .topbar { height: 68px; }
+      .nav-links { gap: 14px; }
+      .nav-links a:not(.button) { display: none; }
+      .nav-links .button { min-height: 40px; padding-inline: 14px; }
+      .hero { padding-top: 46px; }
+      h1 { letter-spacing: -2.4px; }
+      .hero-copy { font-size: 15px; }
+      .hero-art { border-radius: 24px; }
+      .benefits { padding: 21px; }
+      section.content-section { padding-block: 65px; }
+      .services { grid-template-columns: 1fr; }
+      .service-card { min-height: auto; }
+      .contact-card { padding: 27px 22px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-links { flex-wrap: wrap; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#" aria-label="edudocter home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4M12 7v7m-3.5-3.5h7"/></svg>
+        </span>
+        edudocter
+      </a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#how-it-works">How it works</a>
+        <a class="button" href="#contact">Get a repair <span aria-hidden="true">→</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div>
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Your local computer repair team</div>
+        <h1 id="hero-title">A better day starts with a <span>working computer.</span></h1>
+        <p class="hero-copy">Laptop acting up? Desktop slowing down? We make computer repairs easy, honest, and hassle-free.</p>
+        <div class="hero-actions">
+          <a class="button" href="#contact">Book a repair <span aria-hidden="true">→</span></a>
+          <a class="button button-light" href="#services">Explore services</a>
+        </div>
+        <div class="trust-row">
+          <div class="avatars" aria-hidden="true"><span class="avatar">JM</span><span class="avatar">AL</span><span class="avatar">RK</span></div>
+          <div class="trust-copy"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><strong>Friendly help,</strong> every step of the way</div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <img class="hero-photo" src="edudocter-hero.png" alt="edudocter technician repairing a laptop in a workshop" width="1152" height="768">
+      </div>
+    </section>
+
+    <div class="wrap benefits" aria-label="Why choose edudocter">
+      <div class="benefit">
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <div><strong>Honest diagnosis</strong><span>Know the issue before we fix it.</span></div>
+      </div>
+      <div class="benefit">
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="10"/></svg></span>
+        <div><strong>Fast turnaround</strong><span>Get back to what matters sooner.</span></div>
+      </div>
+      <div class="benefit">
+        <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></span>
+        <div><strong>Upfront pricing</strong><span>No surprises. No unnecessary work.</span></div>
+      </div>
+    </div>
+
+    <section class="content-section wrap" id="services" aria-labelledby="services-title">
+      <div class="section-heading">
+        <div class="eyebrow">What we can help with</div>
+        <h2 id="services-title">Small fixes to big headaches.</h2>
+        <p>Practical support for the problems that get in your way, at home or at work.</p>
+      </div>
+      <div class="services">
+        <article class="service-card">
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M2 21h20M8 17l-1 4m9-4 1 4"/></svg></span>
+          <h3>Laptop & desktop repair</h3><p>Hardware troubleshooting, broken screens, battery issues, and more.</p>
+        </article>
+        <article class="service-card">
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3m0 12v3M3 12h3m12 0h3"/><circle cx="12" cy="12" r="7"/><path d="m9 12 2 2 4-4"/></svg></span>
+          <h3>Virus & malware removal</h3><p>Clean up infections and help protect your files and personal information.</p>
+        </article>
+        <article class="service-card">
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/><path d="M8 7h8m-8 4h6"/></svg></span>
+          <h3>Data recovery & backup</h3><p>Recover important files and set up a safer way to keep them backed up.</p>
+        </article>
+        <article class="service-card">
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6m0 0a4 4 0 1 0-4-4m4 4a4 4 0 1 1 4-4"/><path d="M5 20h14"/></svg></span>
+          <h3>Wi-Fi & home setup</h3><p>Get your network, printer, and new devices connected and working together.</p>
+        </article>
+        <article class="service-card">
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/><circle cx="12" cy="12" r="4"/></svg></span>
+          <h3>Performance tune-up</h3><p>Speed up a sluggish computer with updates, cleanup, and expert advice.</p>
+        </article>
+        <article class="service-card">
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Z"/><path d="m19 14 1.1 2.9L23 18l-2.9 1.1L19 22l-1.1-2.9L15 18l2.9-1.1L19 14Z"/></svg></span>
+          <h3>Built-in AI setup</h3><p>Set up built-in AI features on compatible computers and get help using them.</p>
+        </article>
+        <article class="service-card">
+          <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="10"/></svg></span>
+          <h3>Friendly tech support</h3><p>Clear answers and one-on-one help, without the confusing tech talk.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section process" id="how-it-works" aria-labelledby="process-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div class="eyebrow">Simple from start to finish</div>
+          <h2 id="process-title">Getting it fixed shouldn't be a hassle.</h2>
+          <p>We'll keep you in the loop and make sure you know what happens next.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="step-number">01</span><div><h3>Tell us what's going on</h3><p>Reach out and describe the problem. We'll help you figure out the best next step.</p></div></div>
+          <div class="step"><span class="step-number">02</span><div><h3>Get a clear diagnosis</h3><p>We check your device, explain what we find, and share the price before any repair begins.</p></div></div>
+          <div class="step"><span class="step-number">03</span><div><h3>Back up and running</h3><p>Once you approve the work, we'll get started and keep you updated along the way.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section wrap" id="contact" aria-labelledby="contact-title">
+      <div class="contact-card">
+        <div>
+          <div class="eyebrow">Let's get you sorted</div>
+          <h2 id="contact-title">Tell us what's giving you trouble.</h2>
+          <p>Contact our team to talk through the issue and find a repair that works for you.</p>
+          <a class="button" href="mailto:anas.hamad.yamen@gmail.com">Email our team <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="contact-details">
+          <div class="detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.84.58 2.8.7A2 2 0 0 1 22 16.92Z"/></svg>
+            <div><strong>Call us</strong><a href="tel:+96585492174">+965 85492174</a></div>
+          </div>
+          <div class="detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <div><strong>Email us</strong><a href="mailto:anas.hamad.yamen@gmail.com">anas.hamad.yamen@gmail.com</a></div>
+          </div>
+          <div class="detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <div><strong>Hours</strong><span>Open 24 hours</span></div>
+          </div>
+          <div class="qr-contact">
+            <img src="qr-call.svg" alt="QR code to call edudocter at +965 85492174">
+            <div><strong>Scan to call</strong><span>+965 85492174</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a class="brand" href="#" aria-label="edudocter home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4M12 7v7m-3.5-3.5h7"/></svg></span>edudocter</a>
+      <span>© <span id="year">2026</span> edudocter Computer Repair. All rights reserved.</span>
+      <div class="footer-links"><a href="#services">Services</a><a href="#contact">Contact</a></div>
+    </div>
+  </footer>
+</body>
+</html>
